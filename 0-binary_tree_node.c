@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "binary_trees.h"
 /**
  * struct binary_tree_s - Binary tree node
  *
