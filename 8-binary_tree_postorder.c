@@ -7,14 +7,14 @@
  */
 void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int))
 {
-    if ((tree == NULL) || (func == NULL))
-        return; /* If either tree or func is NULL, exit the function */
+	if ((tree == NULL) || (func == NULL))
+		return;
 
-    /* Traverse the left subtree in postorder */
-    binary_tree_postorder(tree->left, func);
+	/* Traverse the left subtree in postorder */
+	binary_tree_postorder(tree->left, func);
 
-    /* Traverse the right subtree in postorder */
-    binary_tree_postorder(tree->right, func);
+	/* Traverse the right subtree in postorder */
+	binary_tree_postorder(tree->right, func);
 
-    func(tree->n); /* Apply the function to the current node */
+	func(tree->n); /* Apply the function to the current node */
 }
