@@ -48,3 +48,4 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 
 	/* Return the newly inserted node or NULL if insertion failed */
 	return (leftNode);
+}
