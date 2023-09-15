@@ -6,19 +6,19 @@
  * @func: Pointer to a function to call for each node
  */
 void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))
-{
-    if (!tree || !func)
-        return; /* If either tree or func is NULL, exit the function */
+{   /* If either tree or func is NULL, exit the function */
+	if (!tree || !func)
+		return;
 
-    /* Traverse the left subtree in in-order */
-    if (tree->left)
-    {
-        binary_tree_inorder(tree->left, func);
-    }
+	/* Traverse the left subtree in in-order */
+	if (tree->left)
+	{
+		binary_tree_inorder(tree->left, func);
+	}
+	/* Apply the function to the current node */
+	func(tree->n);
 
-    func(tree->n); /* Apply the function to the current node */
-
-    /* Traverse the right subtree in in-order */
-    if (tree->right)
-        binary_tree_inorder(tree->right, func);
+	/* Traverse the right subtree in in-order */
+	if (tree->right)
+		binary_tree_inorder(tree->right, func);
 }
