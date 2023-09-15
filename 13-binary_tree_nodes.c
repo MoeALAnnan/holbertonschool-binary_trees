@@ -13,9 +13,8 @@ size_t binary_tree_nodes(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 
-	/* If the current node has at least one child,
-	 * increment count and recursively check left and right subtrees.
-	 */
+	/* If the current node has at least one child,*/
+	/* increment count and recursively check left and right subtrees.*/
 	if (tree->left || tree->right)
 		return (1 + binary_tree_nodes(tree->left) + binary_tree_nodes(tree->right));
 
