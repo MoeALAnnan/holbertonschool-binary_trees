@@ -1,30 +1,33 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_uncle - Finds the uncle of a node in a binary tree.
- * @node: Pointer to the node for which to find the uncle.
+ * binary_tree_insert_right -
+ *Inserts a node as the right-child of another node.
+ * @parent: Pointer to the node to insert the right-child in.
+ * @value: The value to store in the new node.
  *
- * Return: Pointer to the uncle node, or NULL if node is NULL, has no parent,
- *         or the parent has no sibling (uncle).
+ * Return: Pointer to the created node,
+ *or NULL on failure or if parent is NULL.
  */
-binary_tree_t *binary_tree_uncle(binary_tree_t *node)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-	binary_tree_t *parent;
-	binary_tree_t *grandparent;
-
-	/* Check if the node is NULL, or if it has no parent,*/
-	/* or if the parent has no parent. */
-	if (!node || !node->parent || !node->parent->parent)
+	binary_tree_t *rightNode; /* Pointer to the new right node */
+	/* If parent is NULL, return NULL immediately, cannot insert */
+	if (parent == NULL)
 		return (NULL);
+	/* Create a new node with the specified value and parent */
+	rightNode = binary_tree_node(parent, value);
 
-	/* Get references to the parent and grandparent nodes for convenience. */
-	parent = node->parent;
-	grandparent = node->parent->parent;
+	if (parent->right != NULL)
+	{
+		/* If there is an existing right child */
+		/* Set the existing right child as the right child of the new node */
+		rightNode->right = parent->right;
+		/* Update the parent of the existing right child to be the new node */
+		(parent->right)->parent = rightNode;
+	}
+	/* Set the parent's right child to be the new node */
+	parent->right = rightNode;
 
-	/* Check if the parent of the node is the left child of its grandparent,*/
-	/* and return the right child of the grandparent (uncle). */
-	if (grandparent->left == parent)
-		return (grandparent->right);
-	/* Otherwise, return the left child of the grandparent (uncle). */
-	return (grandparent->left);
+	return (rightNode); /* Return the newly created node */
 }
