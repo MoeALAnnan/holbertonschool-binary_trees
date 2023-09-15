@@ -6,15 +6,15 @@
  * @func: Pointer to a function to call for each node
  */
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
-{
-    if ((tree == NULL) || (func == NULL))
-        return; /* If either tree or func is NULL, exit the function */
+{   /* If either tree or func is NULL, exit the function */
+	if ((tree == NULL) || (func == NULL))
+		return;
+	/* Apply the function to the current node */
+	func(tree->n);
 
-    func(tree->n); /* Apply the function to the current node */
+	/* Traverse the left subtree in pre-order */
+	binary_tree_preorder(tree->left, func);
 
-    /* Traverse the left subtree in pre-order */
-    binary_tree_preorder(tree->left, func);
-
-    /* Traverse the right subtree in pre-order */
-    binary_tree_preorder(tree->right, func);
+	/* Traverse the right subtree in pre-order */
+	binary_tree_preorder(tree->right, func);
 }
